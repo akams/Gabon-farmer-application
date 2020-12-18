@@ -6,7 +6,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import { ENVIRONMENT } from '@env';// eslint-disable-line
 
-import { Home, Favoris, Messages, Wallet, Profil, Support, Settings } from './screens';
+import { Home, Favoris, Messages, Wallet, Profil, Support, Settings, Onboarding, Signin } from './screens';
 import { DrawerContent } from './screens/DrawerContent';
 
 import StackScreen from './src/components/atoms/StackScreen';
@@ -15,6 +15,8 @@ console.log('ENVIRONMENT', ENVIRONMENT);
 
 const Drawer = createDrawerNavigator();
 
+const AppStack = createStackNavigator();
+
 const HomeStack = createStackNavigator();
 const FavorisStack = createStackNavigator();
 const MessagesStack = createStackNavigator();
@@ -22,6 +24,13 @@ const WalletStack = createStackNavigator();
 const ProfilStack = createStackNavigator();
 const SupportStack = createStackNavigator();
 const SettingsStack = createStackNavigator();
+
+const AppStackScreen = ({ navigation }) => (
+  <AppStack.Navigator headerMode="none">
+    <AppStack.Screen name="Onboarding" component={Onboarding} />
+    <AppStack.Screen name="Signin" component={Signin} />
+  </AppStack.Navigator>
+);
 
 const HomeStackScreen = ({ navigation }) => (
   <StackScreen componentStack={HomeStack} screen={Home} navigation={navigation} name="Home" optionsTitle="Overview" />
@@ -68,7 +77,7 @@ function DrawNavigateScreens() {
 export default function Setup() {
   return (
     <NavigationContainer>
-      <DrawNavigateScreens />
+      <AppStackScreen />
     </NavigationContainer>
   );
 }

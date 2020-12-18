@@ -5,3 +5,5 @@ export { default as Wallet } from './Wallet';
 export { default as Profil } from './Profil';
 export { default as Support } from './Support';
 export { default as Settings } from './Settings';
+export { default as Onboarding } from './Onboarding';
+export { default as Signin } from './Signin';
