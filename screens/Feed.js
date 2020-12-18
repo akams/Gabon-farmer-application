@@ -9,6 +9,10 @@ function Feed({ navigation }) {
       <Text>Feed Screen</Text>
       <Button title="Open drawer" onPress={() => navigation.openDrawer()} />
       <Button title="Toggle drawer" onPress={() => navigation.toggleDrawer()} />
+      <Button title="Go to Feed screen" onPress={() => navigation.navigate('Feed')} />
+      <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
+      <Button title="Go back" onPress={() => navigation.goBack()} />
+      <Button title="Go to the forst" onPress={() => navigation.popToTop()} />
     </View>
   );
 }
