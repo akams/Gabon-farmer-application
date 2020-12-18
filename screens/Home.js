@@ -1,14 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 // import react in our code.
 import { StyleSheet, View, Text, SafeAreaView, ScrollView, StatusBar, Button } from 'react-native';
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
+
+import firestore from '@react-native-firebase/firestore';
 
 // function Home({ navigation }) {
 //   return (
@@ -28,6 +24,21 @@ import {
 // }
 
 function Home({ navigation }) {
+  useEffect(() => {
+    async function fetch() {
+      const data = [];
+      const querySnapshot = await firestore().collection('users').get();
+      querySnapshot.forEach((doc) => {
+        data.push({
+          id: doc.id,
+          ...doc.data(),
+        });
+      });
+      console.log(data);
+    }
+    fetch();
+  }, []);
+
   return (
     <View style={styles.layout}>
       <Text>Home page</Text>
