@@ -8,7 +8,7 @@ import * as Animatable from 'react-native-animatable';
 import Button from '../../atoms/Button';
 
 function SigninForm({ setDataFunction, data, navigation, onSubmitFunction }) {
-  const { check_textInputChange, secureTextEntry } = data;
+  const { check_textInputChange, secureTextEntry, isValidUser, isValidPassword } = data;
 
   const textInputChange = (val) => {
     if (val.trim().length >= 4) {
@@ -16,18 +16,34 @@ function SigninForm({ setDataFunction, data, navigation, onSubmitFunction }) {
         ...data,
         email: val,
         check_textInputChange: true,
+        isValidUser: true,
       });
     } else {
       setDataFunction({
         ...data,
         email: val,
         check_textInputChange: false,
+        isValidUser: false,
+      });
+    }
+  };
+
+  const handleValidUser = (val) => {
+    if (val.trim().length >= 4) {
+      setDataFunction({
+        ...data,
+        isValidUser: true,
+      });
+    } else {
+      setDataFunction({
+        ...data,
+        isValidUser: false,
       });
     }
   };
 
   const handlePasswordChange = (val) => {
-    if (val.trim().length >= 2) {
+    if (val.trim().length >= 4) {
       setDataFunction({
         ...data,
         password: val,
@@ -58,6 +74,7 @@ function SigninForm({ setDataFunction, data, navigation, onSubmitFunction }) {
           placeholder="Your Email"
           autoCapitalize="none"
           onChangeText={(val) => textInputChange(val)}
+          onEndEditing={(e) => handleValidUser(e.nativeEvent.text)}
           placeholderTextColor="#666666"
           style={styles.textInput}
         />
@@ -67,6 +84,12 @@ function SigninForm({ setDataFunction, data, navigation, onSubmitFunction }) {
           </Animatable.View>
         ) : null}
       </View>
+      {isValidUser ? null : (
+        <Animatable.View animation="fadeInLeft" duration={500}>
+          <Text style={styles.errorMsg}>Username must be 4 characters long.</Text>
+        </Animatable.View>
+      )}
+
       <Text style={[styles.text_footer, styles.addMargin]}>Password</Text>
       <View style={styles.action}>
         <Icon size={20} name="lock-closed-outline" color="#05375a" />
@@ -81,6 +104,12 @@ function SigninForm({ setDataFunction, data, navigation, onSubmitFunction }) {
           <Feather name={secureTextEntry ? 'eye-off' : 'eye'} color="grey" size={20} />
         </TouchableOpacity>
       </View>
+      {isValidPassword ? null : (
+        <Animatable.View animation="fadeInLeft" duration={500}>
+          <Text style={styles.errorMsg}>Password must be 4 characters long.</Text>
+        </Animatable.View>
+      )}
+
       <View style={styles.button}>
         <TouchableOpacity onPress={() => onSubmitFunction(data)} style={styles.signIn}>
           <LinearGradient colors={['#08d4c4', '#01ab9d']} style={styles.signIn}>
