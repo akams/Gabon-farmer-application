@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { StyleSheet, View, Text, StatusBar } from 'react-native';
+
+import { AuthContext } from '../navigation/AuthProvider';
 
 import SignUpForm from '../src/components/organism/SignUp';
 
 function SignUp({ navigation }) {
+  const { register } = useContext(AuthContext);
   const [data, setData] = useState({
-    username: '',
+    email: '',
     password: '',
     confirmPassword: '',
     check_textInputChange: false,
@@ -14,13 +17,18 @@ function SignUp({ navigation }) {
     confirm_secureTextEntry: true,
   });
 
+  const submit = (dataValues) => {
+    const { email, password: pwd } = dataValues;
+    register(email, pwd);
+  };
+
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="#009387" barStyle="light-content" />
       <View style={styles.header}>
         <Text style={styles.text_header}>Register now!</Text>
       </View>
-      <SignUpForm data={data} setDataFunction={setData} navigation={navigation} />
+      <SignUpForm data={data} onSubmitFunction={submit} setDataFunction={setData} navigation={navigation} />
     </View>
   );
 }

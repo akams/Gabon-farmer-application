@@ -45,62 +45,14 @@ function OnboardingScreen({ navigation }) {
       SkipButtonComponent={Skip}
       NextButtonComponent={Next}
       DoneButtonComponent={Done}
-      onSkip={() => navigation.replace('Signin')}
-      onDone={() => navigation.navigate('Signin')}
+      onSkip={() => navigation.replace('SplashScreen')}
+      onDone={() => navigation.navigate('SplashScreen')}
       pages={[
         {
           backgroundColor: '#a6e4d0',
           image: <Image style={styles.firstPage} source={onlineshop} />,
           title: 'Apps online shop',
-          subtitle: (
-            <>
-              <Text>Let's shop with us</Text>
-              <Button
-                title="Create Account"
-                styleBtnContainer={{
-                  elevation: 8,
-                  backgroundColor: '#4F44FE',
-                  borderRadius: 20,
-                  paddingVertical: 13,
-                  paddingHorizontal: 80,
-                  marginTop: 70,
-                  width: 300,
-                }}
-                styleBtnText={{
-                  fontSize: 14,
-                  color: '#fff',
-                  fontWeight: 'bold',
-                  alignSelf: 'center',
-                  textTransform: 'uppercase',
-                }}
-                onPress={() => {
-                  Alert.alert('done');
-                }}
-              />
-              <Button
-                title="Sign In"
-                styleBtnContainer={{
-                  elevation: 8,
-                  backgroundColor: '#fff',
-                  borderRadius: 20,
-                  borderWidth: 1,
-                  borderColor: '#4F44FE',
-                  paddingVertical: 13,
-                  paddingHorizontal: 80,
-                  marginTop: 10,
-                  width: 300,
-                }}
-                styleBtnText={{
-                  fontSize: 14,
-                  color: '#4F44FE',
-                  fontWeight: 'bold',
-                  alignSelf: 'center',
-                  textTransform: 'uppercase',
-                }}
-                onPress={() => navigation.navigate('Signin')}
-              />
-            </>
-          ),
+          subtitle: 'Done with React Native Onboarding Swiper',
         },
         {
           backgroundColor: '#fdeb93',

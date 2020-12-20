@@ -7,20 +7,20 @@ import * as Animatable from 'react-native-animatable';
 
 import Button from '../../atoms/Button';
 
-function SignUpForm({ setDataFunction, data, navigation }) {
+function SignUpForm({ setDataFunction, data, navigation, onSubmitFunction }) {
   const { check_textInputChange, secureTextEntry, confirm_secureTextEntry } = data;
 
   const textInputChange = (val) => {
     if (val.trim().length >= 4) {
       setDataFunction({
         ...data,
-        username: val,
+        email: val,
         check_textInputChange: true,
       });
     } else {
       setDataFunction({
         ...data,
-        username: val,
+        email: val,
         check_textInputChange: false,
       });
     }
@@ -74,11 +74,11 @@ function SignUpForm({ setDataFunction, data, navigation }) {
 
   return (
     <Animatable.View animation="fadeInUpBig" style={styles.footer}>
-      <Text style={styles.text_footer}>Username</Text>
+      <Text style={styles.text_footer}>Email</Text>
       <View style={styles.action}>
         <Icon size={20} name="person-outline" color="#05375a" />
         <TextInput
-          placeholder="Your Username"
+          placeholder="Your email"
           autoCapitalize="none"
           onChangeText={(val) => textInputChange(val)}
           placeholderTextColor="#666666"
@@ -119,9 +119,11 @@ function SignUpForm({ setDataFunction, data, navigation }) {
         </TouchableOpacity>
       </View>
       <View style={styles.button}>
-        <LinearGradient colors={['#08d4c4', '#01ab9d']} style={styles.signIn}>
-          <Text style={[styles.textSign, styles.textWhite]}>Sign Up</Text>
-        </LinearGradient>
+        <TouchableOpacity onPress={() => onSubmitFunction(data)} style={styles.signIn}>
+          <LinearGradient colors={['#08d4c4', '#01ab9d']} style={styles.signIn}>
+            <Text style={[styles.textSign, styles.textWhite]}>Sign Up</Text>
+          </LinearGradient>
+        </TouchableOpacity>
         <Button
           title="Sign In"
           onPress={() => navigation.goBack()}

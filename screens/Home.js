@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
-// import react in our code.
+import React, { useEffect, useContext } from 'react';
 import { StyleSheet, View, Text, SafeAreaView, ScrollView, StatusBar, Button } from 'react-native';
 
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 import firestore from '@react-native-firebase/firestore';
+
+import { AuthContext } from '../navigation/AuthProvider';
 
 // function Home({ navigation }) {
 //   return (
@@ -24,6 +25,7 @@ import firestore from '@react-native-firebase/firestore';
 // }
 
 function Home({ navigation }) {
+  const { user } = useContext(AuthContext);
   useEffect(() => {
     async function fetch() {
       const data = [];
@@ -42,7 +44,7 @@ function Home({ navigation }) {
   return (
     <View style={styles.layout}>
       <Text>Home page</Text>
-      <Text>Hello Eric</Text>
+      <Text>Hello {user.email}</Text>
       <Button title="Go to notif screen" onPress={() => navigation.navigate('Notifications')} />
     </View>
   );

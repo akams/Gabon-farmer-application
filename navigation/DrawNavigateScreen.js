@@ -1,16 +1,14 @@
 /* eslint-disable eslint-comments/no-unlimited-disable */
-import React, { useState, useEffect } from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import { ENVIRONMENT } from '@env';// eslint-disable-line
 
-import { Home, Favoris, Messages, Wallet, Profil, Support, Settings, SignIn } from './screens';
-import { DrawerContent } from './navigation/DrawerContent';
-import Providers from './navigation';
+import { Home, Favoris, Messages, Wallet, Profil, Support, Settings } from '../screens';
+import { DrawerContent } from './DrawerContent';
 
-import StackScreen from './src/components/atoms/StackScreen';
+import StackScreen from '../src/components/atoms/StackScreen';
 
 console.log('ENVIRONMENT', ENVIRONMENT);
 
@@ -66,6 +64,4 @@ function DrawNavigateScreens() {
   );
 }
 
-export default function Setup() {
-  return <Providers />;
-}
+export default DrawNavigateScreens;
