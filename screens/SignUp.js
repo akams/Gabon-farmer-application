@@ -1,25 +1,26 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, StatusBar } from 'react-native';
 
-import SigninForm from '../src/components/organism/SignIn';
+import SignUpForm from '../src/components/organism/SignUp';
 
-function Signin({ navigation }) {
+function SignUp({ navigation }) {
   const [data, setData] = useState({
     username: '',
     password: '',
+    confirmPassword: '',
     check_textInputChange: false,
     secureTextEntry: true,
-    isValidUser: true,
     isValidPassword: true,
+    confirm_secureTextEntry: true,
   });
 
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="#009387" barStyle="light-content" />
       <View style={styles.header}>
-        <Text style={styles.text_header}>Welcome</Text>
+        <Text style={styles.text_header}>Register now!</Text>
       </View>
-      <SigninForm data={data} setDataFunction={setData} navigation={navigation} />
+      <SignUpForm data={data} setDataFunction={setData} navigation={navigation} />
     </View>
   );
 }
@@ -41,4 +42,4 @@ const styles = StyleSheet.create({
     fontSize: 30,
   },
 });
-export default Signin;
+export default SignUp;

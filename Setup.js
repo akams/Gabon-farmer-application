@@ -7,8 +7,9 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import { ENVIRONMENT } from '@env';// eslint-disable-line
 
-import { Home, Favoris, Messages, Wallet, Profil, Support, Settings, Onboarding, Signin } from './screens';
-import { DrawerContent } from './screens/DrawerContent';
+import { Home, Favoris, Messages, Wallet, Profil, Support, Settings, Onboarding, SignIn } from './screens';
+import { DrawerContent } from './navigation/DrawerContent';
+import RootStackScreen from './navigation/RootStackScreen';
 
 import StackScreen from './src/components/atoms/StackScreen';
 
@@ -29,7 +30,7 @@ const SettingsStack = createStackNavigator();
 const AppStackScreen = ({ navigation }) => (
   <AppStack.Navigator headerMode="none">
     <AppStack.Screen name="Onboarding" component={Onboarding} />
-    <AppStack.Screen name="Signin" component={Signin} />
+    <AppStack.Screen name="SignIn" component={SignIn} />
   </AppStack.Navigator>
 );
 
@@ -100,11 +101,11 @@ export default function Setup() {
   } else if (isFirstLaunch === true) {
     return (
       <NavigationContainer>
-        <AppStackScreen />
+        <RootStackScreen />
       </NavigationContainer>
     );
   } else {
-    return <Signin />;
+    return <SignIn />;
   }
 
   // return (

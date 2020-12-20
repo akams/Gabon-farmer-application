@@ -6,4 +6,6 @@ export { default as Profil } from './Profil';
 export { default as Support } from './Support';
 export { default as Settings } from './Settings';
 export { default as Onboarding } from './Onboarding';
-export { default as Signin } from './Signin';
+export { default as SplashScreen } from './SplashScreen';
+export { default as SignIn } from './SignIn';
+export { default as SignUp } from './SignUp';

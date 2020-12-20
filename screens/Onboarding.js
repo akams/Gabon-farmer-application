@@ -3,7 +3,7 @@ import React from 'react';
 import { Alert, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import Onboarding from 'react-native-onboarding-swiper';
 
-import Button from '../src/components/atoms/Buttons';
+import Button from '../src/components/atoms/Button';
 
 import onlineshop from '../assets/onboarding-onlineshop.jpg';
 import mobilepayment from '../assets/onboarding-mobilepayment.png';
