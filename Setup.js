@@ -1,5 +1,6 @@
 /* eslint-disable eslint-comments/no-unlimited-disable */
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
+import AsyncStorage from '@react-native-community/async-storage';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
@@ -75,9 +76,40 @@ function DrawNavigateScreens() {
 }
 
 export default function Setup() {
-  return (
-    <NavigationContainer>
-      <AppStackScreen />
-    </NavigationContainer>
-  );
+  const [isFirstLaunch, setFirstLaunch] = useState(true);
+
+  async function fetchStorage() {
+    const value = await AsyncStorage.getItem('alreadyLaunched');
+    console.log('value', value);
+    if (value === null) {
+      AsyncStorage.setItem('alreadyLaunched', 'true');
+      setFirstLaunch(true);
+      console.log('setFirstLaunch true');
+    } else {
+      setFirstLaunch(false);
+      console.log('setFirstLaunch false');
+    }
+  }
+
+  useEffect(() => {
+    // fetchStorage();
+  }, []);
+
+  if (isFirstLaunch === null) {
+    return null;
+  } else if (isFirstLaunch === true) {
+    return (
+      <NavigationContainer>
+        <AppStackScreen />
+      </NavigationContainer>
+    );
+  } else {
+    return <Signin />;
+  }
+
+  // return (
+  //   <NavigationContainer>
+  //     <AppStackScreen />
+  //   </NavigationContainer>
+  // );
 }
