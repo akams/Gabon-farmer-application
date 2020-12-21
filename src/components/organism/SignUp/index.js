@@ -7,8 +7,19 @@ import * as Animatable from 'react-native-animatable';
 
 import Button from '../../atoms/Button';
 
+const matchPwd = (pwd, pwd2) => pwd === pwd2;
+
 function SignUpForm({ setDataFunction, data, navigation, onSubmitFunction }) {
-  const { check_textInputChange, secureTextEntry, confirm_secureTextEntry } = data;
+  const {
+    check_textInputChange,
+    secureTextEntry,
+    confirm_secureTextEntry,
+    isValidUser,
+    isValidPassword,
+    isValidConfirmPassword,
+    password,
+    confirmPassword,
+  } = data;
 
   const textInputChange = (val) => {
     if (val.trim().length >= 4) {
@@ -16,18 +27,34 @@ function SignUpForm({ setDataFunction, data, navigation, onSubmitFunction }) {
         ...data,
         email: val,
         check_textInputChange: true,
+        isValidUser: true,
       });
     } else {
       setDataFunction({
         ...data,
         email: val,
         check_textInputChange: false,
+        isValidUser: false,
+      });
+    }
+  };
+
+  const handleValidUser = (val) => {
+    if (val.trim().length >= 4) {
+      setDataFunction({
+        ...data,
+        isValidUser: true,
+      });
+    } else {
+      setDataFunction({
+        ...data,
+        isValidUser: false,
       });
     }
   };
 
   const handlePasswordChange = (val) => {
-    if (val.trim().length >= 2) {
+    if (val.trim().length >= 4) {
       setDataFunction({
         ...data,
         password: val,
@@ -43,17 +70,17 @@ function SignUpForm({ setDataFunction, data, navigation, onSubmitFunction }) {
   };
 
   const handleConfirmPasswordChange = (val) => {
-    if (val.trim().length >= 2) {
+    if (val.trim().length >= 4) {
       setDataFunction({
         ...data,
         confirmPassword: val,
-        isValidPassword: true,
+        isValidConfirmPassword: true,
       });
     } else {
       setDataFunction({
         ...data,
         confirmPassword: val,
-        isValidPassword: false,
+        isValidConfirmPassword: false,
       });
     }
   };
@@ -81,6 +108,7 @@ function SignUpForm({ setDataFunction, data, navigation, onSubmitFunction }) {
           placeholder="Your email"
           autoCapitalize="none"
           onChangeText={(val) => textInputChange(val)}
+          onEndEditing={(e) => handleValidUser(e.nativeEvent.text)}
           placeholderTextColor="#666666"
           style={styles.textInput}
         />
@@ -90,6 +118,12 @@ function SignUpForm({ setDataFunction, data, navigation, onSubmitFunction }) {
           </Animatable.View>
         ) : null}
       </View>
+      {isValidUser ? null : (
+        <Animatable.View animation="fadeInLeft" duration={500}>
+          <Text style={styles.errorMsg}>Username must be 4 characters long.</Text>
+        </Animatable.View>
+      )}
+
       <Text style={[styles.text_footer, styles.addMargin]}>Password</Text>
       <View style={styles.action}>
         <Icon size={20} name="lock-closed-outline" color="#05375a" />
@@ -104,6 +138,12 @@ function SignUpForm({ setDataFunction, data, navigation, onSubmitFunction }) {
           <Feather name={secureTextEntry ? 'eye-off' : 'eye'} color="grey" size={20} />
         </TouchableOpacity>
       </View>
+      {isValidPassword ? null : (
+        <Animatable.View animation="fadeInLeft" duration={500}>
+          <Text style={styles.errorMsg}>Password must be 4 characters long.</Text>
+        </Animatable.View>
+      )}
+
       <Text style={[styles.text_footer, styles.addMargin]}>Confirm Password</Text>
       <View style={styles.action}>
         <Icon size={20} name="lock-closed-outline" color="#05375a" />
@@ -118,6 +158,18 @@ function SignUpForm({ setDataFunction, data, navigation, onSubmitFunction }) {
           <Feather name={confirm_secureTextEntry ? 'eye-off' : 'eye'} color="grey" size={20} />
         </TouchableOpacity>
       </View>
+      {isValidConfirmPassword ? null : (
+        <Animatable.View animation="fadeInLeft" duration={500}>
+          <Text style={styles.errorMsg}>Password must be 4 characters long.</Text>
+        </Animatable.View>
+      )}
+
+      {matchPwd(password, confirmPassword) ? null : (
+        <Animatable.View animation="fadeInLeft" duration={500} style={styles.addSmallMargin}>
+          <Text style={styles.errorMsg}>Password not match with the confirmation password</Text>
+        </Animatable.View>
+      )}
+
       <View style={styles.button}>
         <TouchableOpacity onPress={() => onSubmitFunction(data)} style={styles.signIn}>
           <LinearGradient colors={['#08d4c4', '#01ab9d']} style={styles.signIn}>
@@ -146,6 +198,9 @@ const styles = StyleSheet.create({
   },
   addMargin: {
     marginTop: 35,
+  },
+  addSmallMargin: {
+    marginTop: 10,
   },
   textWhite: {
     color: '#fff',

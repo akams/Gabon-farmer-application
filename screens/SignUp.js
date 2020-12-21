@@ -14,7 +14,9 @@ function SignUp({ navigation }) {
     check_textInputChange: false,
     secureTextEntry: true,
     isValidPassword: true,
+    isValidConfirmPassword: true,
     confirm_secureTextEntry: true,
+    isValidUser: true,
   });
 
   const submit = (dataValues) => {

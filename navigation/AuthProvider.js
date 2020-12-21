@@ -36,10 +36,23 @@ export const AuthProvider = ({ children }) => {
         },
         register: async (email, password) => {
           try {
-            console.log({ email, password });
+            if (email.length === 0 || password.length === 0) {
+              Alert.alert('Wrong Input!', 'Username or password field cannot be empty.', [{ text: 'Okay' }]);
+              return;
+            }
             await auth().createUserWithEmailAndPassword(email, password);
-          } catch (e) {
-            console.log(e);
+          } catch (error) {
+            let errorMsg = '';
+            if (error.code === 'auth/weak-password') {
+              errorMsg = 'That password is too weak';
+            }
+            if (error.code === 'auth/email-already-in-use') {
+              errorMsg = 'That email address is already in use!';
+            }
+            if (error.code === 'auth/invalid-email') {
+              errorMsg = 'That email address is invalid!';
+            }
+            Alert.alert(error.code, errorMsg, [{ text: 'Okay' }]);
           }
         },
         logout: async () => {
