@@ -11,7 +11,7 @@ function SearchBar({ navigation }) {
       <View style={styles.centerIconLeft} />
       <View style={styles.middle}>
         <View style={styles.textArea}>
-          <TextInput style={styles.fontSize} placeholder="Your email" autoCapitalize="none" />
+          <TextInput style={styles.fontSize} placeholder="Que cherchez-vous?" autoCapitalize="none" />
         </View>
 
         <Icon

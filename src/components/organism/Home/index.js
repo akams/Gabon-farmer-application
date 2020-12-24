@@ -1,7 +1,8 @@
 import React from 'react';
 import { StyleSheet, View, ScrollView } from 'react-native';
 
-import { Header, SearchBar, CategoriesProduct, Favoris } from '../../molecules/Home';
+import { SearchBar, CategoriesProduct, Favoris } from '../../molecules/Home';
+import Header from '../../atoms/Header';
 
 import { COLORS } from '../../../../constants/colors';
 

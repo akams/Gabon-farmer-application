@@ -1,21 +1,24 @@
-import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import React, { useContext } from 'react';
+import { StyleSheet, SafeAreaView, Text } from 'react-native';
+
+import { AuthContext } from '../navigation/AuthProvider';
+import ProductsOrganisms from '../src/components/organism/Products';
+
+import { COLORS } from '../constants/colors';
 
 function Products({ navigation }) {
+  const { user } = useContext(AuthContext);
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Messages Screen</Text>
-    </View>
+    <SafeAreaView style={styles.container}>
+      <ProductsOrganisms user={user} navigation={navigation} />
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  MainContainer: {
+  container: {
     flex: 1,
-    paddingTop: 20,
-    alignItems: 'center',
-    marginTop: 50,
-    justifyContent: 'center',
+    backgroundColor: COLORS.lightGray4,
   },
 });
 
