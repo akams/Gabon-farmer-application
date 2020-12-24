@@ -65,6 +65,9 @@ function CategoriesProduct({ navigation, categories }) {
           showsHorizontalScrollIndicator={false}
           keyExtractor={(item) => `${item.id}`}
           renderItem={renderItem}
+          contentContainerStyle={{
+            paddingHorizontal: SIZES.padding * 0.5,
+          }}
         />
         <FlatList
           data={DATA[1]}
@@ -92,7 +95,7 @@ export default CategoriesProduct;
 
 const styles = StyleSheet.create({
   headTitle: {
-    paddingLeft: 20,
+    paddingLeft: SIZES.padding * 4,
     paddingTop: 40,
     fontWeight: 'bold',
     fontSize: 26,
