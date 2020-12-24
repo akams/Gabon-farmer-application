@@ -7,6 +7,7 @@ function StackScreenComponent({ componentStack, screen, navigation, name, option
   return (
     <componentStack.Navigator
       screenOptions={{
+        headerShown: name !== 'Home',
         headerStyle: {
           backgroundColor: '#009387',
         },
