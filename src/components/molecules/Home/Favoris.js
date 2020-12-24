@@ -15,48 +15,35 @@ const DATA = [
     image: appleFruitsImg,
     title: 'Pomme',
     description: '3,00$ - 1Kg',
+    isFav: true,
   },
   {
     id: '3ac68afc',
     image: bananeFruitsImg,
     title: 'Banane',
     description: '2,95$ - 1Kg',
+    isFav: false,
   },
   {
     id: '3ac68afc2',
     image: bananeFruitsImg,
     title: 'Banane',
     description: '2,95$ - 1Kg',
+    isFav: true,
   },
   {
     id: '3ac68afc3',
     image: bananeFruitsImg,
     title: 'Banane',
     description: '2,95$ - 1Kg',
+    isFav: true,
   },
   {
     id: '3ac68afc4',
     image: bananeFruitsImg,
     title: 'Banane',
     description: '2,95$ - 1Kg',
-  },
-  {
-    id: '3ac68afc5',
-    image: bananeFruitsImg,
-    title: 'Banane',
-    description: '2,95$ - 1Kg',
-  },
-  {
-    id: '3ac68afc6',
-    image: bananeFruitsImg,
-    title: 'Banane',
-    description: '2,95$ - 1Kg',
-  },
-  {
-    id: '3ac68afc7',
-    image: bananeFruitsImg,
-    title: 'Banane',
-    description: '2,95$ - 1Kg',
+    isFav: true,
   },
 ];
 

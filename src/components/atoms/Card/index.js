@@ -9,7 +9,15 @@ const Card = ({ itemData, onPress }) => (
   <TouchableOpacity onPress={onPress} style={styles.mainContainerCard}>
     <View style={styles.card}>
       <View style={styles.cardImgWrapper}>
-        <Icon name="heart" size={30} onPress={() => console.log('heart')} style={styles.heart} />
+        <Icon
+          // color="#fff"
+          // name="heart-outline"
+          name={itemData.isFav ? 'heart' : 'heart-outline'}
+          size={30}
+          onPress={() => console.log('heart')}
+          // style={styles.heart}
+          style={[styles.heart, itemData.isFav ? styles.heartFull : styles.heartEmpty]}
+        />
         <Image source={itemData.image} resizeMode="cover" style={styles.cardImg} />
       </View>
       <View style={styles.cardInfo}>
@@ -29,8 +37,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingBottom: 20,
   },
+  heartFull: { color: '#FF797A' },
+  heartEmpty: { color: '#fff' },
   heart: {
-    color: '#FF797A',
     position: 'absolute',
     top: 10,
     right: 10,
