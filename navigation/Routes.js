@@ -14,6 +14,7 @@ import fruitsImg from '../assets/home/fruits.jpg';
 import vegetablesImg from '../assets/home/vegetables.jpg';
 import rizImg from '../assets/home/riz.jpg';
 import seafoodsImg from '../assets/home/seafoods.jpg';
+import appleFruit from '../assets/fruits/apple.jpg';
 
 const Routes = () => {
   const { user, setUser } = useContext(AuthContext);
@@ -32,6 +33,7 @@ const Routes = () => {
     urlOfImages.push(vegetablesImg);
     urlOfImages.push(rizImg);
     urlOfImages.push(seafoodsImg);
+    urlOfImages.push(appleFruit);
     return () => {
       subscriber();
       preloadImages(urlOfImages);

@@ -42,47 +42,43 @@ export function DrawerContent(props) {
         <Drawer.Section style={styles.drawerSection}>
           <DrawerItem
             label="Home"
-            icon={(color) => <Icon name="home-outline" color={color} size={20} />}
+            icon={() => <Icon name="home-outline" size={20} />}
             onPress={() => props.navigation.navigate('Home')}
           />
           <DrawerItem
             label="Favoris"
-            icon={(color) => <Icon name="bookmarks-outline" color={color} size={20} />}
+            icon={() => <Icon name="bookmarks-outline" size={20} />}
             onPress={() => props.navigation.navigate('Favoris')}
           />
           <DrawerItem
             label="Messages"
-            icon={(color) => <Icon name="mail-outline" color={color} size={20} />}
+            icon={() => <Icon name="mail-outline" size={20} />}
             onPress={() => props.navigation.navigate('Messages')}
           />
           <DrawerItem
             label="Wallet"
-            icon={(color) => <Icon name="wallet-outline" color={color} size={20} />}
+            icon={() => <Icon name="wallet-outline" size={20} />}
             onPress={() => props.navigation.navigate('Wallet')}
           />
           <DrawerItem
             label="Profil"
-            icon={(color) => <Icon name="person-outline" color={color} size={20} />}
+            icon={() => <Icon name="person-outline" size={20} />}
             onPress={() => props.navigation.navigate('Profil')}
           />
           <DrawerItem
             label="Aide"
-            icon={(color) => <Icon name="help-circle-outline" color={color} size={20} />}
+            icon={() => <Icon name="help-circle-outline" size={20} />}
             onPress={() => props.navigation.navigate('Support')}
           />
           <DrawerItem
             label="Paramètre"
-            icon={(color) => <Icon name="settings-outline" color={color} size={20} />}
+            icon={() => <Icon name="settings-outline" size={20} />}
             onPress={() => props.navigation.navigate('Settings')}
           />
         </Drawer.Section>
       </DrawerContentScrollView>
       <Drawer.Section style={styles.bottomDrawerSection}>
-        <DrawerItem
-          label="Sign out"
-          icon={(color) => <Icon name="log-out-outline" color={color} size={20} />}
-          onPress={() => logout()}
-        />
+        <DrawerItem label="Sign out" icon={() => <Icon name="log-out-outline" size={20} />} onPress={() => logout()} />
       </Drawer.Section>
     </View>
   );

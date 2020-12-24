@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, ScrollView } from 'react-native';
 
-import { Header, SearchBar, CategoriesProduct } from '../../molecules/Home';
+import { Header, SearchBar, CategoriesProduct, Favoris } from '../../molecules/Home';
 
 import { COLORS } from '../../../../constants/colors';
 
@@ -12,6 +12,7 @@ function Home({ navigation, user }) {
         <Header navigation={navigation} />
         <SearchBar navigation={navigation} />
         <CategoriesProduct navigation={navigation} />
+        <Favoris navigation={navigation} />
       </ScrollView>
     </View>
   );
