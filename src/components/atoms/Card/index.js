@@ -6,7 +6,7 @@ import { SIZES } from '../../../../constants/themes';
 import { COLORS } from '../../../../constants/colors';
 
 const Card = ({ itemData, onPress }) => (
-  <TouchableOpacity onPress={onPress}>
+  <TouchableOpacity onPress={onPress} style={styles.mainContainerCard}>
     <View style={styles.card}>
       <View style={styles.cardImgWrapper}>
         <Icon name="heart" size={30} onPress={() => console.log('heart')} style={styles.heart} />
@@ -25,6 +25,10 @@ const Card = ({ itemData, onPress }) => (
 export default Card;
 
 const styles = StyleSheet.create({
+  mainContainerCard: {
+    paddingHorizontal: 10,
+    paddingBottom: 20,
+  },
   heart: {
     color: '#FF797A',
     position: 'absolute',
@@ -47,36 +51,26 @@ const styles = StyleSheet.create({
   },
   cardImgWrapper: {
     flex: 1,
-    // backgroundColor: '#D6B7F3',
-    // borderRadius: SIZES.radius,
+    marginBottom: 30,
   },
   cardImg: {
+    width: '100%',
     height: '100%',
-    width: 150,
-    alignSelf: 'center',
-    borderRadius: SIZES.radius,
+    borderTopRightRadius: SIZES.radius,
+    borderTopLeftRadius: SIZES.radius,
   },
   cardInfo: {
     position: 'absolute',
-    bottom: 0,
+    bottom: -20,
     height: 50,
+    width: '100%',
+    backgroundColor: COLORS.white,
+    borderBottomLeftRadius: SIZES.radius,
+    borderBottomRightRadius: SIZES.radius,
     alignItems: 'center',
     justifyContent: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 3,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 3,
-    elevation: 2,
     zIndex: 2,
-    marginHorizontal: 40,
-
-    width: SIZES.width * 0.3,
-    backgroundColor: COLORS.white,
-    borderTopRightRadius: SIZES.radius,
-    borderBottomLeftRadius: SIZES.radius,
+    elevation: 2,
   },
   cardTitle: {
     fontWeight: 'bold',

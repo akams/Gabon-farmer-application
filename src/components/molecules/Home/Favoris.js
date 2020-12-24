@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, View, Text, FlatList, TouchableOpacity } from 'react-native';
-import { Avatar, Title } from 'react-native-paper';
 
 import Card from '../../atoms/Card';
 
@@ -8,51 +7,75 @@ import { COLORS } from '../../../../constants/colors';
 import { SIZES } from '../../../../constants/themes';
 
 import appleFruitsImg from '../../../../assets/fruits/apple.jpg';
+import bananeFruitsImg from '../../../../assets/fruits/banane.jpg';
 
-// const DATA = [
-//   [
-//     {
-//       id: 'bd7acbea',
-//       title: 'Légumes',
-//       img: vegetablesImg,
-//     },
-//     {
-//       id: '3ac68afc',
-//       title: 'Fruits',
-//       img: fruitsImg,
-//     },
-//     {
-//       id: '58694a0f',
-//       title: 'Riz',
-//       img: rizImg,
-//     },
-//   ],
-//   [
-//     {
-//       id: '3da1471f',
-//       title: 'Viandes',
-//       img: meatImg,
-//     },
-//     {
-//       id: 'bd961455',
-//       title: 'Fruit de mer',
-//       img: seafoodsImg,
-//     },
-//   ],
-// ];
-
-const Item = ({ title, img }) => (
-  <View style={styles.sectionInfo}>
-    <View style={styles.sectionAvatarTitle}>
-      <Avatar.Image style={styles.shadow} source={img} size={50} />
-      <View style={styles.sectionTitle}>
-        <Title style={styles.title}>{title}</Title>
-      </View>
-    </View>
-  </View>
-);
+const DATA = [
+  {
+    id: 'bd7acbea',
+    image: appleFruitsImg,
+    title: 'Pomme',
+    description: '3,00$ - 1Kg',
+  },
+  {
+    id: '3ac68afc',
+    image: bananeFruitsImg,
+    title: 'Banane',
+    description: '2,95$ - 1Kg',
+  },
+  {
+    id: '3ac68afc2',
+    image: bananeFruitsImg,
+    title: 'Banane',
+    description: '2,95$ - 1Kg',
+  },
+  {
+    id: '3ac68afc3',
+    image: bananeFruitsImg,
+    title: 'Banane',
+    description: '2,95$ - 1Kg',
+  },
+  {
+    id: '3ac68afc4',
+    image: bananeFruitsImg,
+    title: 'Banane',
+    description: '2,95$ - 1Kg',
+  },
+  {
+    id: '3ac68afc5',
+    image: bananeFruitsImg,
+    title: 'Banane',
+    description: '2,95$ - 1Kg',
+  },
+  {
+    id: '3ac68afc6',
+    image: bananeFruitsImg,
+    title: 'Banane',
+    description: '2,95$ - 1Kg',
+  },
+  {
+    id: '3ac68afc7',
+    image: bananeFruitsImg,
+    title: 'Banane',
+    description: '2,95$ - 1Kg',
+  },
+];
 
 function Favoris({ navigation, categories }) {
+  function renderFav() {
+    const renderItem = ({ item }) => <Card itemData={item} onPress={() => console.log('okay!')} />;
+    return (
+      <View>
+        <FlatList
+          data={DATA}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          keyExtractor={(item) => `${item.id}`}
+          renderItem={renderItem}
+        />
+      </View>
+    );
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.headContainer}>
@@ -66,16 +89,7 @@ function Favoris({ navigation, categories }) {
           <Text style={[SIZES.h1, styles.seeAll]}>Voir tout</Text>
         </TouchableOpacity>
       </View>
-      <View>
-        <Card
-          itemData={{
-            image: appleFruitsImg,
-            title: 'Pomme',
-            description: '3,00$ - 1Kg',
-          }}
-          onPress={() => console.log('okay!')}
-        />
-      </View>
+      <View>{renderFav()}</View>
     </View>
   );
 }
