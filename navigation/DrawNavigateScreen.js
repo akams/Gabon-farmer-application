@@ -5,7 +5,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import { ENVIRONMENT } from '@env';// eslint-disable-line
 
-import { Home, Favoris, Messages, Wallet, Profil, Support, Settings } from '../screens';
+import { Home, Favoris, Messages, Wallet, Profil, Support, Products } from '../screens';
 import { DrawerContent } from './DrawerContent';
 
 import StackScreen from '../src/components/atoms/StackScreen';
@@ -15,6 +15,7 @@ console.log('ENVIRONMENT', ENVIRONMENT);
 const Drawer = createDrawerNavigator();
 
 const HomeStack = createStackNavigator();
+const ProductsStack = createStackNavigator();
 const FavorisStack = createStackNavigator();
 const MessagesStack = createStackNavigator();
 const WalletStack = createStackNavigator();
@@ -23,7 +24,24 @@ const SupportStack = createStackNavigator();
 const SettingsStack = createStackNavigator();
 
 const HomeStackScreen = ({ navigation }) => (
-  <StackScreen componentStack={HomeStack} screen={Home} navigation={navigation} name="Home" optionsTitle="Overview" />
+  <StackScreen
+    componentStack={HomeStack}
+    screen={Home}
+    navigation={navigation}
+    name="Home"
+    optionsTitle="Overview"
+    defaultHeader={false}
+  />
+);
+
+const ProductsStackScreen = ({ navigation }) => (
+  <StackScreen
+    componentStack={ProductsStack}
+    screen={Products}
+    navigation={navigation}
+    name="Products"
+    defaultHeader={false}
+  />
 );
 
 const FavorisStackScreen = ({ navigation }) => (
@@ -47,13 +65,14 @@ const SupportStackScreen = ({ navigation }) => (
 );
 
 const SetttingsStackScreen = ({ navigation }) => (
-  <StackScreen componentStack={SettingsStack} screen={Settings} navigation={navigation} name="Settings" />
+  <StackScreen componentStack={SettingsStack} screen={Support} navigation={navigation} name="Settings" />
 );
 
 function DrawNavigateScreens() {
   return (
     <Drawer.Navigator initialRouteName="Home" drawerContent={(props) => <DrawerContent {...props} />}>
       <Drawer.Screen name="Home" component={HomeStackScreen} />
+      <Drawer.Screen name="Products" component={ProductsStackScreen} />
       <Drawer.Screen name="Favoris" component={FavorisStackScreen} />
       <Drawer.Screen name="Messages" component={MessagesStackScreen} />
       <Drawer.Screen name="Wallet" component={WalletStackScreen} />

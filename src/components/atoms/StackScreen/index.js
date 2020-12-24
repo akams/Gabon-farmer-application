@@ -3,11 +3,11 @@ import * as React from 'react';
 
 import Icon from 'react-native-vector-icons/Ionicons';
 
-function StackScreenComponent({ componentStack, screen, navigation, name, optionsTitle }) {
+function StackScreenComponent({ componentStack, screen, navigation, name, optionsTitle, defaultHeader = true }) {
   return (
     <componentStack.Navigator
       screenOptions={{
-        headerShown: name !== 'Home',
+        headerShown: defaultHeader === true,
         headerStyle: {
           backgroundColor: '#009387',
         },

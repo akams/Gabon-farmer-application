@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, FlatList } from 'react-native';
+import { StyleSheet, View, Text, FlatList, TouchableOpacity } from 'react-native';
 import { Avatar, Title } from 'react-native-paper';
 
 import { COLORS } from '../../../../constants/colors';
@@ -43,20 +43,20 @@ const DATA = [
   ],
 ];
 
-const Item = ({ title, img }) => (
-  <View style={styles.sectionInfo}>
+const Item = ({ title, img, navigation }) => (
+  <TouchableOpacity style={styles.sectionInfo} onPress={() => navigation.navigate('Products')}>
     <View style={styles.sectionAvatarTitle}>
       <Avatar.Image style={styles.shadow} source={img} size={50} />
       <View style={styles.sectionTitle}>
         <Title style={styles.title}>{title}</Title>
       </View>
     </View>
-  </View>
+  </TouchableOpacity>
 );
 
 function CategoriesProduct({ navigation, categories }) {
   function renderMainCategories() {
-    const renderItem = ({ item }) => <Item {...item} />;
+    const renderItem = ({ item }) => <Item {...item} navigation={navigation} />;
     return (
       <View>
         <FlatList
