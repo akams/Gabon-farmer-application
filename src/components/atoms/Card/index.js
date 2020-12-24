@@ -10,12 +10,9 @@ const Card = ({ itemData, onPress }) => (
     <View style={styles.card}>
       <View style={styles.cardImgWrapper}>
         <Icon
-          // color="#fff"
-          // name="heart-outline"
           name={itemData.isFav ? 'heart' : 'heart-outline'}
           size={30}
           onPress={() => console.log('heart')}
-          // style={styles.heart}
           style={[styles.heart, itemData.isFav ? styles.heartFull : styles.heartEmpty]}
         />
         <Image source={itemData.image} resizeMode="cover" style={styles.cardImg} />
