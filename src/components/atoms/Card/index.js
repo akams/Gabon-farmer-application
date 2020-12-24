@@ -5,8 +5,8 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { SIZES } from '../../../../constants/themes';
 import { COLORS } from '../../../../constants/colors';
 
-const Card = ({ itemData, onPress }) => (
-  <TouchableOpacity onPress={onPress} style={styles.mainContainerCard}>
+const Card = ({ itemData, onPress, mainContainerCard }) => (
+  <TouchableOpacity onPress={onPress} style={mainContainerCard || styles.mainContainerCard}>
     <View style={styles.card}>
       <View style={styles.cardImgWrapper}>
         <Icon

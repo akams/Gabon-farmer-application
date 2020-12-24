@@ -1,14 +1,74 @@
 import React from 'react';
-import { StyleSheet, View, ScrollView, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, ScrollView, Text, TouchableOpacity, FlatList } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import { SearchBar } from '../../molecules/Home';
 import Header from '../../atoms/Header';
+import Card from '../../atoms/Card';
 
 import { SIZES } from '../../../../constants/themes';
 import { COLORS } from '../../../../constants/colors';
 
+import appleFruitsImg from '../../../../assets/fruits/apple.jpg';
+import bananeFruitsImg from '../../../../assets/fruits/banane.jpg';
+
+const DATA = [
+  {
+    id: 'bd7acbea',
+    image: appleFruitsImg,
+    title: 'Pomme',
+    description: '3,00$ - 1Kg',
+    isFav: true,
+  },
+  {
+    id: '3ac68afc',
+    image: bananeFruitsImg,
+    title: 'Banane',
+    description: '2,95$ - 1Kg',
+    isFav: false,
+  },
+  {
+    id: '3ac68afc2',
+    image: bananeFruitsImg,
+    title: 'Banane',
+    description: '2,95$ - 1Kg',
+    isFav: true,
+  },
+  {
+    id: '3ac68afc3',
+    image: bananeFruitsImg,
+    title: 'Banane',
+    description: '2,95$ - 1Kg',
+    isFav: true,
+  },
+  {
+    id: '3ac68afc4',
+    image: bananeFruitsImg,
+    title: 'Banane',
+    description: '2,95$ - 1Kg',
+    isFav: true,
+  },
+  {
+    id: '3ac68afc5',
+    image: bananeFruitsImg,
+    title: 'Banane',
+    description: '2,95$ - 1Kg',
+    isFav: true,
+  },
+];
+
 function Products({ navigation, user }) {
+  const renderItem = ({ item }) => (
+    <Card
+      itemData={item}
+      onPress={() => console.log('okay!')}
+      mainContainerCard={{
+        paddingHorizontal: 20,
+        paddingBottom: 20,
+      }}
+    />
+  );
+
   return (
     <View style={styles.container}>
       <ScrollView contentInsetAdjustmentBehavior="automatic">
@@ -33,6 +93,17 @@ function Products({ navigation, user }) {
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.centerIconRight} />
+        </View>
+        <View>
+          <FlatList
+            numColumns={2}
+            data={DATA}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.id}
+            contentContainerStyle={{
+              paddingHorizontal: SIZES.padding * 2,
+            }}
+          />
         </View>
       </ScrollView>
     </View>
@@ -79,11 +150,6 @@ const styles = StyleSheet.create({
   },
   centerIconRight: {
     paddingRight: SIZES.padding * 4,
-
-    // flexGrow: 1,
-    // justifyContent: 'center',
-    // alignItems: 'center',
-    // textAlignVertical: 'bottom',
   },
   middle: { flex: 1, alignItems: 'center', justifyContent: 'center' },
 });
