@@ -21,11 +21,10 @@ function Home({ navigation }) {
           ...doc.data(),
         });
       });
-      console.log(data);
+      // console.log(data);
     }
     fetch();
   }, []);
-
   return (
     <SafeAreaView style={styles.container}>
       <HomeOrganisms user={user} navigation={navigation} />

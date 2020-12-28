@@ -55,12 +55,41 @@ const DATA = [
     description: '2,95$ - 1Kg',
     isFav: true,
   },
+  {
+    id: '3ac68afc40',
+    image: bananeFruitsImg,
+    title: 'Banane',
+    description: '2,95$ - 1Kg',
+    isFav: true,
+  },
+  {
+    id: '3ac68afc50',
+    image: bananeFruitsImg,
+    title: 'Banane',
+    description: '2,95$ - 1Kg',
+    isFav: true,
+  },
+  {
+    id: '3ac68afc49',
+    image: bananeFruitsImg,
+    title: 'Banane',
+    description: '2,95$ - 1Kg',
+    isFav: true,
+  },
+  {
+    id: '3ac68afc59',
+    image: bananeFruitsImg,
+    title: 'Banane',
+    description: '2,95$ - 1Kg',
+    isFav: true,
+  },
 ];
 
-function Products({ navigation, user }) {
-  const renderItem = ({ item }) => (
+function Products({ navigation, user, params }) {
+  const { title: titleProduct, id: idProduct } = params;
+  const renderItem = (item) => (
     <Card
-      itemData={item}
+      itemData={item.item}
       onPress={() => console.log('okay!')}
       mainContainerCard={{
         paddingHorizontal: 20,
@@ -74,7 +103,9 @@ function Products({ navigation, user }) {
       <ScrollView contentInsetAdjustmentBehavior="automatic">
         <Header isBackComponent navigation={navigation} />
         <SearchBar navigation={navigation} />
-        <Text style={[SIZES.h1, styles.headTitle]}>Légumes</Text>
+        <Text style={[SIZES.h1, styles.headTitle]}>
+          {idProduct} - {titleProduct}
+        </Text>
 
         <View style={styles.headContainer}>
           <View style={styles.centerIconLeft}>

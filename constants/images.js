@@ -1,3 +1,5 @@
+import { Image } from 'react-native';
+
 export function preloadImages(urlOfImages) {
   // an array of urls of images
   const preFetchTasks = [];

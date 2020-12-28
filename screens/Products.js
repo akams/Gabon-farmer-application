@@ -1,16 +1,19 @@
 import React, { useContext } from 'react';
-import { StyleSheet, SafeAreaView, Text } from 'react-native';
+import { StyleSheet, SafeAreaView } from 'react-native';
 
 import { AuthContext } from '../navigation/AuthProvider';
 import ProductsOrganisms from '../src/components/organism/Products';
 
 import { COLORS } from '../constants/colors';
 
-function Products({ navigation }) {
+function Products({ route, navigation }) {
   const { user } = useContext(AuthContext);
+  const {
+    params: { id, title },
+  } = route;
   return (
     <SafeAreaView style={styles.container}>
-      <ProductsOrganisms user={user} navigation={navigation} />
+      <ProductsOrganisms user={user} navigation={navigation} params={{ id, title }} />
     </SafeAreaView>
   );
 }

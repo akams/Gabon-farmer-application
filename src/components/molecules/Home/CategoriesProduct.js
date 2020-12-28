@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text, FlatList, TouchableOpacity } from 'react-native';
 import { Avatar, Title } from 'react-native-paper';
+import { useNavigation } from '@react-navigation/native';
 
 import { COLORS } from '../../../../constants/colors';
 import { SIZES } from '../../../../constants/themes';
@@ -43,56 +44,63 @@ const DATA = [
   ],
 ];
 
-const Item = (item, navigation) => {
-  const {
-    item: { title, img },
-  } = item;
-  return (
-    <TouchableOpacity style={styles.sectionInfo} onPress={() => navigation.navigate('Products')}>
-      <View style={styles.sectionAvatarTitle}>
-        <Avatar.Image style={styles.shadow} source={img} size={50} />
-        <View style={styles.sectionTitle}>
-          <Title style={styles.title}>{title}</Title>
-        </View>
-      </View>
-    </TouchableOpacity>
-  );
-};
-
-function CategoriesProduct({ navigation, categories }) {
-  function renderMainCategories() {
-    const renderItem = (item) => <Item item={item.item} navigation={navigation} key={item.index} />;
-
-    return (
-      <View>
-        <FlatList
-          data={DATA[0]}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          keyExtractor={(item) => `${item.id}`}
-          renderItem={renderItem}
-          contentContainerStyle={{
-            paddingHorizontal: SIZES.padding * 0.5,
-          }}
-        />
-        <FlatList
-          data={DATA[1]}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          keyExtractor={(item) => `${item.id}`}
-          renderItem={renderItem}
-          contentContainerStyle={{
-            paddingHorizontal: SIZES.padding2 * 4,
-          }}
-        />
-      </View>
-    );
-  }
-
+function CategoriesProduct({ categories }) {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <Text style={[SIZES.h1, styles.headTitle]}>Catégories principales</Text>
-      {renderMainCategories()}
+      {renderMainCategories(navigation)}
+    </View>
+  );
+}
+
+function renderMainCategories(navigation) {
+  const renderItem = (item) => {
+    const {
+      item: { id, title, img },
+    } = item;
+    return (
+      <TouchableOpacity
+        style={styles.sectionInfo}
+        onPress={() =>
+          navigation.navigate('Products', {
+            id,
+            title,
+          })
+        }
+      >
+        <View style={styles.sectionAvatarTitle}>
+          <Avatar.Image style={styles.shadow} source={img} size={50} />
+          <View style={styles.sectionTitle}>
+            <Title style={styles.title}>{title}</Title>
+          </View>
+        </View>
+      </TouchableOpacity>
+    );
+  };
+
+  return (
+    <View>
+      <FlatList
+        data={DATA[0]}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        keyExtractor={(item) => `${item.id}`}
+        renderItem={renderItem}
+        contentContainerStyle={{
+          paddingHorizontal: SIZES.padding * 0.5,
+        }}
+      />
+      <FlatList
+        data={DATA[1]}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        keyExtractor={(item) => `${item.id}`}
+        renderItem={renderItem}
+        contentContainerStyle={{
+          paddingHorizontal: SIZES.padding2 * 4,
+        }}
+      />
     </View>
   );
 }
