@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 import { SIZES } from '../../../../constants/themes';
 
-function Header({ navigation, isBackComponent = false }) {
+function Header({ navigation, isBackComponent = false, displayMarket = true }) {
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.centerIconLeft}>
@@ -22,9 +22,11 @@ function Header({ navigation, isBackComponent = false }) {
 
       <View style={styles.middle} />
 
-      <TouchableOpacity style={styles.centerIconRight}>
-        <Icon name="basket-outline" size={30} />
-      </TouchableOpacity>
+      {displayMarket && (
+        <TouchableOpacity style={styles.centerIconRight}>
+          <Icon name="basket-outline" size={30} />
+        </TouchableOpacity>
+      )}
     </View>
   );
 }

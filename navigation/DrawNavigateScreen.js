@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 import { ENVIRONMENT } from '@env';// eslint-disable-line
 
-import { Home, Favoris, Messages, Wallet, Profil, Support, Products } from '../screens';
+import { Home, Favoris, Messages, Wallet, Profil, Support, Products, DetailsProduct } from '../screens';
 import { DrawerContent } from './DrawerContent';
 
 import StackScreen from '../src/components/atoms/StackScreen';
@@ -50,6 +50,15 @@ const HomeStackScreen = ({ navigation }) => (
     <HomeStack.Screen
       name="Products"
       component={Products}
+      options={{
+        headerLeft: () => (
+          <Icon.Button name="ios-menu" size={25} backgroundColor="#009387" onPress={() => navigation.openDrawer()} />
+        ),
+      }}
+    />
+    <HomeStack.Screen
+      name="DetailsProduct"
+      component={DetailsProduct}
       options={{
         headerLeft: () => (
           <Icon.Button name="ios-menu" size={25} backgroundColor="#009387" onPress={() => navigation.openDrawer()} />

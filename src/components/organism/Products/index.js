@@ -86,11 +86,16 @@ const DATA = [
 ];
 
 function Products({ navigation, user, params }) {
-  const { title: titleProduct, id: idProduct } = params;
+  const { title, id } = params;
   const renderItem = (item) => (
     <Card
       itemData={item.item}
-      onPress={() => console.log('okay!')}
+      onPress={() =>
+        navigation.navigate('DetailsProduct', {
+          id,
+          title,
+        })
+      }
       mainContainerCard={{
         paddingHorizontal: 20,
         paddingBottom: 20,
@@ -104,7 +109,7 @@ function Products({ navigation, user, params }) {
         <Header isBackComponent navigation={navigation} />
         <SearchBar navigation={navigation} />
         <Text style={[SIZES.h1, styles.headTitle]}>
-          {idProduct} - {titleProduct}
+          {id} - {title}
         </Text>
 
         <View style={styles.headContainer}>
