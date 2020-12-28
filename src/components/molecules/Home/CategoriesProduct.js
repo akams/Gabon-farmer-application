@@ -43,20 +43,26 @@ const DATA = [
   ],
 ];
 
-const Item = ({ title, img, navigation }) => (
-  <TouchableOpacity style={styles.sectionInfo} onPress={() => navigation.navigate('Products')}>
-    <View style={styles.sectionAvatarTitle}>
-      <Avatar.Image style={styles.shadow} source={img} size={50} />
-      <View style={styles.sectionTitle}>
-        <Title style={styles.title}>{title}</Title>
+const Item = (item, navigation) => {
+  const {
+    item: { title, img },
+  } = item;
+  return (
+    <TouchableOpacity style={styles.sectionInfo} onPress={() => navigation.navigate('Products')}>
+      <View style={styles.sectionAvatarTitle}>
+        <Avatar.Image style={styles.shadow} source={img} size={50} />
+        <View style={styles.sectionTitle}>
+          <Title style={styles.title}>{title}</Title>
+        </View>
       </View>
-    </View>
-  </TouchableOpacity>
-);
+    </TouchableOpacity>
+  );
+};
 
 function CategoriesProduct({ navigation, categories }) {
   function renderMainCategories() {
-    const renderItem = ({ item }) => <Item {...item} navigation={navigation} />;
+    const renderItem = (item) => <Item item={item.item} navigation={navigation} key={item.index} />;
+
     return (
       <View>
         <FlatList
