@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, ScrollView, Text, Image, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { connect } from 'react-redux';
+
+import { dispatchSetCart } from '../../../../redux/actions/cartAction';
 
 import Header from '../../atoms/Header';
 
@@ -13,7 +16,8 @@ const DATA = {
   id: 'bd7acbea',
   image: appleFruitsImg,
   title: 'Pomme',
-  price: '3,00$',
+  price: 1.95,
+  devise: '$',
   weight: '1kg',
   description:
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed imperdiet sagittis libero, in scelerisque elit facilisis a. Fusce tincidunt leo eu massa lacinia hendrerit. Proin vulputate sapien neque, quis vulputate quam congue vel. Aenean rhoncus egestas pellentesque. Maecenas nec ornare diam. Proin mattis velit et faucibus sollicitudin. Phasellus iaculis elementum ornare. Aliquam aliquet faucibus orci eget interdum. Suspendisse accumsan eu urna nec viverra.',
@@ -22,10 +26,16 @@ const DATA = {
 
 const pad = (d) => (d < 10 ? `0${d.toString()}` : d.toString());
 
+const formatPrice = (price, devise) => `${price.toFixed(2)}${devise}`;
+
 const verifData = (value) => (value <= 1 ? 1 : value);
 
-function DetailsProduct({ navigation, user }) {
+function DetailsProduct(props) {
+  const { navigation, dispatchSetCartFunction } = props;
   const [count, seCounter] = useState(1);
+  const onSubmit = () => {
+    dispatchSetCartFunction({ ...DATA, qte: count });
+  };
   return (
     <View style={styles.container}>
       <ScrollView contentInsetAdjustmentBehavior="automatic">
@@ -42,7 +52,7 @@ function DetailsProduct({ navigation, user }) {
             </View>
             <View style={[styles.headContainer, styles.outterView]}>
               <View style={styles.centerIconLeft}>
-                <Text style={[styles.infoPage]}>{DATA.price}</Text>
+                <Text style={[styles.infoPage]}>{formatPrice(DATA.price, DATA.devise)}</Text>
               </View>
 
               <View style={styles.middle} />
@@ -61,7 +71,7 @@ function DetailsProduct({ navigation, user }) {
             </View>
             <View style={[styles.headContainer, styles.outterView]}>
               <Text>
-                {DATA.price} - {DATA.weight}
+                {formatPrice(DATA.price, DATA.devise)} - {DATA.weight}
               </Text>
             </View>
             <View style={[styles.headContainer, styles.outterView]}>
@@ -76,7 +86,7 @@ function DetailsProduct({ navigation, user }) {
                 onPress={() => console.log('heart')}
                 style={styles.heart}
               />
-              <TouchableOpacity style={styles.btnAddCart}>
+              <TouchableOpacity style={styles.btnAddCart} onPress={() => onSubmit()}>
                 <Text style={styles.txtCart}>Ajouter au panier</Text>
               </TouchableOpacity>
             </View>
@@ -86,8 +96,6 @@ function DetailsProduct({ navigation, user }) {
     </View>
   );
 }
-
-export default DetailsProduct;
 
 const styles = StyleSheet.create({
   title: { fontSize: 36, fontWeight: 'bold', paddingTop: 20 },
@@ -158,3 +166,10 @@ const styles = StyleSheet.create({
   },
   middle: { flex: 1, alignItems: 'center', justifyContent: 'center' },
 });
+
+const mapDispatchToProps = {
+  dispatchSetCartFunction: (values) => dispatchSetCart(values),
+};
+const mapStateToProps = () => ({});
+
+export default connect(mapStateToProps, mapDispatchToProps)(DetailsProduct);
