@@ -2,6 +2,10 @@ add firebase googleService-*.plist with xcode open ios workspace
 
 lien utile :
 
+https://therohanbhatia.com/blog/music-player-app-using-react-native-hooks/
+
+https://blog.usejournal.com/going-mobile-getting-started-with-react-native-582ed22a2afa
+
 https://medium.com/@mks_01/how-to-handle-react-native-network-error-using-hooks-ab1be5898e54
 
 https://rnfirebase.io/
